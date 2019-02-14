@@ -25,7 +25,7 @@ day01
         at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:94)
         at java.lang.ClassLoader.loadClass(Unknown Source)
         ... 9 more
-    原因： gradle 和 springboot 版本问题
+    原因： gradle 和 springboot 版本问题 - 使用 gradle3.5 构建 springboot1.5.9 时，生成的 jar 包中不会有 lib 目录，而lib中则包含了所有依赖
     更改： 环境变为 gradle 5.2.1 + springboot 2.1.3
 (5)环境变为 gradle 5.2.1 + springboot 2.1.3
 
