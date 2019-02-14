@@ -25,5 +25,7 @@ day01
         at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:94)
         at java.lang.ClassLoader.loadClass(Unknown Source)
         ... 9 more
-
+    原因： gradle 和 springboot 版本问题
+    更改： 环境变为 gradle 5.2.1 + springboot 2.1.3
+(5)环境变为 gradle 5.2.1 + springboot 2.1.3
 
