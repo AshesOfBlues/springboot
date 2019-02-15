@@ -48,5 +48,13 @@ day02
             url 'http://maven.aliyun.com/nexus/content/groups/public'
         }
     }
+(6)导入项目到 idea , auto-import 来自动导入依赖，并选择本地的 gradle 作为构建工具
+    -- 更改 class BlogStartApplication 为 Application ， 规范化
+    -- @SpringBootApplication （鼠标放到注解上显示帮助 settings -> general -> show quick documention on mouse move)
+        = @Configuration(一般和 @Bean 使用) + @EnableAutoConfiguration + @ComponmentScan
+    -- @RestController
+        = @Controller + @Responsebody 为了更好的处理 rest 请求
+    -- MockMvc 来测试 controller 是否生效
+    
 
 
