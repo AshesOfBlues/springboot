@@ -30,4 +30,23 @@ day01
 (5)环境变为 gradle 5.2.1 + springboot 2.1.3 成功运行
 (6)nohup java -jar .\build\libs\blog-start-0.0.1-SNAPSHOT.jar &
 
+-----------------------------------------------------------------------
+day02
+(1)build.gradle
+(2)gradle wrapper
+(3)更改 build.gradle 文件，版本号等
+(4)将 blog-start 移植为 helloworld ，
+    - 不需要编译后的文件 .gradle/ , build/
+    - settings.gradle 文件修改 rootproject = 'helloworld'
+    - gradle build
+    - java -jar ...
+(5)gradle 更改 aliyun 中央仓库来加快构建速度
+    - build.gradle 中 
+    repositories{
+        mavenCentral() 注释掉
+        maven{
+            url 'http://maven.aliyun.com/nexus/content/groups/public'
+        }
+    }
+
 
