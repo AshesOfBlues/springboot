@@ -54,7 +54,12 @@ day02
         = @Configuration(一般和 @Bean 使用) + @EnableAutoConfiguration + @ComponmentScan
     -- @RestController
         = @Controller + @Responsebody 为了更好的处理 rest 请求
-    -- MockMvc 来测试 controller 是否生效
+    -- 在 test 中使用MockMvc 来测试 controller 是否生效
+        @Runwith(SpringRunner.class)
+            -- SpringRunner 和 SpringJUnit4ClassRunner 区别？
+        @SpringBootTest
+            -- 作用
+        如何使用 MockMvc ?
     
 
 
