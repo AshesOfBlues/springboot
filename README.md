@@ -125,6 +125,14 @@ day03
 （2）thymeleaf 和 springboot 集成
 		-- 引入依赖并指定 thymeleaf 3版本 
 			-- build.gradle 中
+			-- 导入 thymeleaf 配置 ： application.properties 中配置(注意文件编码，乱码会报错)
+				-- spring.thymeleaf.encoding:utf-8 
+				-- spring.thymeleaf.cache: false
+				-- spring.thymeleaf.mode:HTML5
+（3）编写后台
+（4）编写前台
+		-- 动态
+		-- html 热加载之后，更改需要recomplie 才能再显示
 			
 
 		
