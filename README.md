@@ -127,12 +127,33 @@ day03
 			-- build.gradle 中
 			-- 导入 thymeleaf 配置 ： application.properties 中配置(注意文件编码，乱码会报错)
 				-- spring.thymeleaf.encoding:utf-8 
-				-- spring.thymeleaf.cache: false
+				-- spring.thymeleaf.cache: false  //热加载，html 更改后只需 recomplie(idea 中)就可以刷新，无需重启项目
 				-- spring.thymeleaf.mode:HTML5
 （3）编写后台
+		-- User 类
+		-- UserRespository 类，
+			-- 使用 ConcurrentHashMap 来存储，AtomicLong 来生成id（线程安全，比如自增操作）
+		-- Controller 类
+			-- Model 对象
+			-- ModelAndView 对象
+			-- ModelMap 对象
+			-- @GetMapping , @PostMapping
 （4）编写前台
+		-- thymeleaf 会在 resources 目录下新建立 templates 目录，所有的前台页面可以分类写在这个目录下，ModelAndView.setViewName("/users/list") 就会去匹配 templates/users/list.html 页面
+		-- 一些语法
+			-- th:fragment="footer" 定义一个片段，可以在其他地方引用。如 th:replace="~{fragments/footer :: footer}" 就会去查找 templates 下的 fragments/footer.html 中名为 footer 的片段。
+			-- th:replace="" 将此元素替换掉。 如 div 会被替换成另一个 div
+			-- th:insert="" 将此元素中的内容替换掉。 如 div 不会被替换，其内容加上 div，即 <div><div></div></div>
+			-- th:text="{text}" 元素中的内容被替换为从服务端接收的 text 变量
+			-- th:value="{user.name}" 元素的 value 属性值被替换为从服务端接收的 user.name 值
+			-- th:href="@{/users/list}" a 元素的 href 属性更改为 /users/list
+			-- th:each="user : ${uerList}" 遍历服务端返回的 list 集合
+			-- th:object="user" 将此元素关联到服务端返回的对象
+				-- *{name} 取当前 object 中指定对象的 name 属性
+			-- th:
 		-- 动态
-		-- html 热加载之后，更改需要recomplie 才能再显示
+
+		
 			
 
 		
