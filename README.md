@@ -151,7 +151,65 @@ day03
 			-- th:object="user" 将此元素关联到服务端返回的对象
 				-- *{name} 取当前 object 中指定对象的 name 属性
 			-- th:
-		-- 动态
+		-- 动态加载
+
+-----------------------------------------------------------------------------
+day05 连接数据库
+(1)spring jpa
+    -- hibernate 
+(2)实体
+    -- 对应一个数据表，每个实体实例是一行
+    -- 使用 @Entity 注解
+(3)实体条件
+    -- public/protected 无参构造器，便于映射
+    -- 实现 Serializable 接口，实现远程传递
+    -- 唯一对象标识作为主键 @Id
+(4)关系
+(5)EntityManager 接口
+    -- 定义与持久性上下文进行交互的方法
+    -- 创建和删除持久实体实例，通过实体的主键查找实体
+    -- 允许在实体上运行查询
+    -- EntityManagerFactory来获取
+(6)常用接口
+    -- CrudRepository : 
+    -- PagingAndSortingRepository : 分页和排序常用
+(7)自定义接口
+    -- 继承 Repository 
+    -- 方法名有规则
+(8)导入依赖
+    -- springboot data jpa
+    -- mysql connector
+(9)启动
+    -- Consider the following:
+        If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
+        If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
+        原因：引入hibernate 后，框架中的 datasource 被 @Configuration 读取，但是 datasource 没有配置，所以会报错。
+        解决：可以使用一个内置数据库，如 h2，就会自动配置
+                或者暂时不读取配置项
+            build.gradle 中 implementation 'com.h2database:h2:1.3.172'
+(10)后台改造
+        -- User 实体
+            -- @Entity
+            -- @Id ， @GeneratedValue(strategy= GenerationType.IDENTITY)
+            -- toString , String.format()
+        -- UserReposity 
+            -- extends CrudRepository<实体类型，参数类型
+            -- 删除 UserRepositoryImpl
+        -- UserController
+            -- 重新更改增删改查方法
+(11)运行
+        -- Consider defining a bean of type 'com.XXX' in your configuration.
+            明明已经 @Autowired ,并且 UserRepository extends CrudRepository后无需提供实现类就可
+            工作，但是报此错误。
+            在 Application 类中 添加 @EnableJpaRepositories(basePackages = "com.alex.*")
+
+        -- spring boot jpa-java.lang.IllegalArgumentException: Not a managed type
+            -- 上面问题解决了，再次启动。
+            -- User 没有实例化成功，检查 @Entity 有没有。如果有，Application 加上 @EntityScan(basePackages = "com.alex.*")
+            -- springboot 有约定的扫描规则 https://blog.csdn.net/heyewu4107/article/details/78942393
+                --@Compo
+
+
 
 		
 			
