@@ -208,7 +208,15 @@ day05 连接数据库
             -- User 没有实例化成功，检查 @Entity 有没有。如果有，Application 加上 @EntityScan(basePackages = "com.alex.*")
             -- springboot 有约定的扫描规则 https://blog.csdn.net/heyewu4107/article/details/78942393
                 --@Compo
-
+(12)运行成功
+        -- 数据存储到了 h2 内置数据库里（h2无需配置，是一个内存数据库。当然，如果愿意也可以配置）
+        -- 查看 h2 console
+            -- applicaiton.yml 中配置 spring.h2.console.enable=true
+            -- http://ip:port/h2-console
+(13)连接 mysql
+        -- applicaiton.yml 中配置数据源
+        -- 配置show-sql, ddl-auto
+The server time zone value '�й���׼ʱ��' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration
 
 
 		
