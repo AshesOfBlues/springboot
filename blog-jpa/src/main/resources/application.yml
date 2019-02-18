@@ -1,0 +1,21 @@
+#thymeleaf
+spring:
+  thymeleaf:
+    encoding: utf-8
+    cache: false
+    mode: HTML5
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: 1103
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
+
+
