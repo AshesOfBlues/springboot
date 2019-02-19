@@ -152,7 +152,6 @@ day03
 				-- *{name} 取当前 object 中指定对象的 name 属性
 			-- th:
 		-- 动态加载
-
 -----------------------------------------------------------------------------
 day05 连接数据库
 (1)spring jpa
@@ -207,7 +206,9 @@ day05 连接数据库
             -- 上面问题解决了，再次启动。
             -- User 没有实例化成功，检查 @Entity 有没有。如果有，Application 加上 @EntityScan(basePackages = "com.alex.*")
             -- springboot 有约定的扫描规则 https://blog.csdn.net/heyewu4107/article/details/78942393
-                --@Compo
+                -- @ComponmentScan(basePackages = "") // 只扫描@Component（包括 @Service，@Controller, @Service）
+                -- @EntityScan(basePackages = "") // 只扫描 @Entity 的
+                -- @EnableJpaRepositories(basePackages = "") // 只扫描 @Repository
 (12)运行成功
         -- 数据存储到了 h2 内置数据库里（h2无需配置，是一个内存数据库。当然，如果愿意也可以配置）
         -- 查看 h2 console
