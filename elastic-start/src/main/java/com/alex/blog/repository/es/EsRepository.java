@@ -6,6 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 
-public interface EsRepository extends ElasticsearchRepository<EsBlog, Long> {
+public interface EsRepository extends ElasticsearchRepository<EsBlog, String> {
     Page<EsBlog> findEsBlogsByContentContaining(String content, Pageable pageable);
 }

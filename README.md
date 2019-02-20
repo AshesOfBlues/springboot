@@ -223,7 +223,7 @@ The server time zone value '�й���׼ʱ��' is unrecognized or represe
 day06 - 使用 elasticsearch
 (1)elastic 版本 : 6.5.0  
 (2)build.gradle 添加依赖
-        -- spring-boot-starter-data-elasticsearch // 注意elasticsearch 版本对应
+        -- spring-boot-starter-data-elasticsearch // 注意elasticsearch 版本对应，否则报错找不到 节点
         -- jna包 // 暂时没发现作用
 (3)application.yml 增加配置
         -- spring.data.elasticsearch.cluster_nodes=ip:port //port 应该是 tcp 端口， 9300
@@ -248,8 +248,57 @@ day06 - 使用 elasticsearch
         -- 无需写增删改查语句， 直接继承 CrudRepository/ElasticSearchRepository接口 就可以实现增删改查功能。  也可以根据规则自定义方法，来实现特定操作
         -- 都要加一个扫描仓库 @EnableRepositories()/@EnableElasticSearchRepositories()
         -- jpa 要指定 @Entity ，elasticsearch 要指定 @Document(indexname="", type="")
+
+(9)bootstrap 与 springboot集成
+        -- html5, meta, normalize.css 作用， reboot作用
+        -- 移动设备优先
+        -- 响应式
+            -- 因为网格系统
+        -- 网格系统
+            -- viewport 尺寸的增加，系统会自动分为 12 列
+
+
+-------------------------------------------------------------
+day07 - 
+(1)
+        -- 需求分析
+        -- 原型设计 ： 最终效果，反复修改原型成为产品
+            -- 生成最终产品效果
+            -- 和需求分析一起决定产品
+(2)	博客系统
+        -- 需求分析
+            -- 用户管理
+                -- 注册
+                -- 增加
+                -- 删除
+            -- 安全设置
+            -- 博客管理
+            -- 评论管理
+            -- 点赞管理
+            -- 分类管理
+            -- 标签管理
+            -- 首页搜索
+        -- 原型设计
+            -- 
+(3)基于角色的权限管理
+        -- 角色
+            -- 项目管理员、游客等等
+            -- 限定用户在系统中的操作
+            -- 通过账号体现
+        -- RBAC
+            -- Role-Based access control
+            -- 隐式访问方式 ： 和角色关联 // 用户是否是某个角色
+            -- 显式访问方式 ： 和权限关联 // 用户是否拥有某个权限
+            -- Shiro 和 Spring Security 两个框架
+                -- shiro 更简洁
+                -- spring security 更强大，和 spring 兼容性更好
+        -- Spring Security
+            -- 后端
+                
+            -- 前端
+
+
 		
-			
 
 		
     
