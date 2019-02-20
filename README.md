@@ -182,7 +182,7 @@ day05 连接数据库
     -- Consider the following:
         If you want an embedded database (H2, HSQL or Derby), please put it on the classpath.
         If you have database settings to be loaded from a particular profile you may need to activate it (no profiles are currently active).
-        原因：引入hibernate 后，框架中的 datasource 被 @Configuration 读取，但是 datasource 没有配置，所以会报错。
+        原因：引入hibernate 后，框架中的 datasource 被 @Configuration 读取，但是 datasource 没有配置参数，所以会报错。
         解决：可以使用一个内置数据库，如 h2，就会自动配置
                 或者暂时不读取配置项
             build.gradle 中 implementation 'com.h2database:h2:1.3.172'
@@ -192,7 +192,7 @@ day05 连接数据库
             -- @Id ， @GeneratedValue(strategy= GenerationType.IDENTITY)
             -- toString , String.format()
         -- UserReposity 
-            -- extends CrudRepository<实体类型，参数类型
+            -- extends CrudRepository<实体类型，参数类型>
             -- 删除 UserRepositoryImpl
         -- UserController
             -- 重新更改增删改查方法
@@ -219,7 +219,35 @@ day05 连接数据库
         -- 配置show-sql, ddl-auto
 The server time zone value '�й���׼ʱ��' is unrecognized or represents more than one time zone. You must configure either the server or JDBC driver (via the serverTimezone configuration
 
+---------------------------------------------------
+day06 - 使用 elasticsearch
+(1)elastic 版本 : 6.5.0  
+(2)build.gradle 添加依赖
+        -- spring-boot-starter-data-elasticsearch // 注意elasticsearch 版本对应
+        -- jna包 // 暂时没发现作用
+(3)application.yml 增加配置
+        -- spring.data.elasticsearch.cluster_nodes=ip:port //port 应该是 tcp 端口， 9300
+        -- spring.data.elasticsearch.repositories.enabled=true // 开启 es 仓库，默认为 true
+(4)EsBlog 类： 文档类，要存储的数据
+        -- @Document(indexName="blog", type="blog") // 指定文档索引和类型
+(5)interface EsBlogRepository extends ElasticSerachRepository<EsBlog, String> // String 是 EsBlog 中 id 字段类型
+        -- 无需注解，继承父类注解 @NoRepositoryBean ，这个注解意思是 使用了此注解的接口不创建子类实例 //我也不知道为什么会继承
+        -- 自定义方法
+            -- Page<EsBlog> findEsBlogsByContentContaining(String content, Pageable pageable);
+                -- Page<EsBlog> 和 Pageable
+                -- 
+(6)Application 
+        -- @EnableElasticSearchRepositories(basePackages = "")
 
+(7)测试
+        -- @RunWith(SpringRunner.class)
+        -- @SpringBootTest(classes = Application.class) // 需要指定主加载类，否则默认只加载 test 类同路径下 ，会报 cant load ApplicationContext ,因为bean 无法注入
+
+
+(8)总结：因为都是 spring-data 项目，所以 spring-boot-jpa 和 spring-boot-elasitcsearch 有很多相似性
+        -- 无需写增删改查语句， 直接继承 CrudRepository/ElasticSearchRepository接口 就可以实现增删改查功能。  也可以根据规则自定义方法，来实现特定操作
+        -- 都要加一个扫描仓库 @EnableRepositories()/@EnableElasticSearchRepositories()
+        -- jpa 要指定 @Entity ，elasticsearch 要指定 @Document(indexname="", type="")
 		
 			
 
