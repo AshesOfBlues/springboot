@@ -86,8 +86,8 @@ day03
 			-- data-th-text="" 
 		-- 语法
 			-- 变量表达式 ${}
-			-- 消息表达式 #{} 又称 国际化
-			-- 选择表达式 *{} : 与变量表达式的区别
+			-- 消息表达式 #{} 又称 国际化, 从 templates/..properties 上取属性
+			-- 选择表达式 *{} : 与变量表达式的区别， 在当前对象上遍历，效率高
 			-- 链接表达式 @{} : 4种
 			-- 分段表达式 
 			-- 字面量： 文本、数字、布尔、
@@ -257,6 +257,20 @@ day06 - 使用 elasticsearch
         -- 网格系统
             -- viewport 尺寸的增加，系统会自动分为 12 列
 
+        -- 开始集成
+            -- /static/ 下存放 bootstrap 的静态资源文件
+            -- /templates/ 下存放 html 文件
+                -- fragments/header.html 
+                    -- 使用 <html data-th-fragment="header"> 将为 html 元素（不包括 <html>)中
+                    所有元素指定模板
+                -- index.html 
+                    -- 使用 <head th:replace="~{fragments/header :: header}"> 来引入 header 模板， <body> 会自动合并
+        -- 使用
+            -- 导航栏的使用
+            -- table 使用
+            -- form ， input 使用
+
+
 
 -------------------------------------------------------------
 day07 - 
@@ -301,6 +315,22 @@ day07 -
 		
 
 		
-    
+
+
+
+---------------------------------------------------------
+一周总结
+    -- springboot 两个目录
+        -- resources/templates/ 下的文件无法直接外部访问， 放一些自己编写的文件
+        -- resources/static/ 下的文件可以直接外部访问，可以放一些公共静态文件，如 bootstrap 等
+    -- 关于跳转
+        -- springboot 默认访问 / 会跳转到 resources/static/index.html
+        -- 使用 thymeleaf 就会使用动态跳转， 跳转到 /resources/templates/index.html
+            -- 因为 thymeleaf 默认下面的配置
+                -- spring.thymeleaf.prefix=classpath:/templates/
+                -- spring.thymeleaf.suffix=.html
+
+
+
 
 
